@@ -11,28 +11,14 @@ namespace Livraria.Infra.Data.DataContexts
 
         public DataContext(AppSettings appSettings)
         {
-            try
-            {
-                SqlServerConexao = new SqlConnection(appSettings.ConnectionString);
-                SqlServerConexao.Open();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            SqlServerConexao = new SqlConnection(appSettings.ConnectionString);
+            SqlServerConexao.Open();
         }
 
         public void Dispose()
         {
-            try
-            {
-                if (SqlServerConexao.State != ConnectionState.Closed)
-                    SqlServerConexao.Close();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            if (SqlServerConexao.State != ConnectionState.Closed)
+                SqlServerConexao.Close();
         }
     }
 }
