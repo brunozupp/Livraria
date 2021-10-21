@@ -1,3 +1,5 @@
+using ElmahCore.Mvc;
+using Livraria.Api.Middlewares;
 using Livraria.Domain.Handlers;
 using Livraria.Domain.Interfaces.Respositories;
 using Livraria.Infra.Data.DataContexts;
@@ -49,8 +51,16 @@ namespace Livraria.Api
 
             #endregion Handlers
 
+            #region Middlewares
+
+
+
+            #endregion
+
+            services.AddElmah();
+
             services.AddControllers();
-            
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Livraria.Api", Version = "v1" });
@@ -71,6 +81,11 @@ namespace Livraria.Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseMiddleware<ExceptionMiddleware>();
+
+            // O acesso é feito pela URL: URL/elmah
+            app.UseElmah();
 
             app.UseEndpoints(endpoints =>
             {

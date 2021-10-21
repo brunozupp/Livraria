@@ -4,6 +4,7 @@ using Livraria.Domain.Interfaces.Respositories;
 using Livraria.Domain.Query;
 using Livraria.Infra.Interfaces.Commands;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace Livraria.Api.Controllers
@@ -63,6 +64,17 @@ namespace Livraria.Api.Controllers
         public LivroQueryResult ObterLivro([FromRoute] long livroId)
         {
             var result = _repository.Obter(livroId);
+            return result;
+        }
+
+        [HttpGet]
+        [Route("v1/livros/teste")]
+        public LivroQueryResult teste()
+        {
+
+            throw new Exception("Uma mensagem de erro para teste");
+
+            var result = _repository.Obter(1);
             return result;
         }
     }
