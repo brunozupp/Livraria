@@ -37,6 +37,7 @@ namespace Livraria.Api.Middlewares
 
             var result = JsonConvert.SerializeObject(new
             {
+                code = (int)code,
                 detail = exception.StackTrace,
                 title = exception.Message,
                 type = exception.GetType().Name

@@ -1,4 +1,6 @@
+using ElmahCore;
 using ElmahCore.Mvc;
+using ElmahCore.Sql;
 using Livraria.Api.Middlewares;
 using Livraria.Domain.Handlers;
 using Livraria.Domain.Interfaces.Respositories;
@@ -58,6 +60,16 @@ namespace Livraria.Api
             #endregion
 
             services.AddElmah();
+
+            services.AddElmah<XmlFileErrorLog>(options =>
+            {
+                options.LogPath = "~/log";
+            });
+
+            services.AddElmah<SqlErrorLog>(options =>
+            {
+                options.ConnectionString = appSettings.ConnectionString;
+            });
 
             services.AddControllers();
 

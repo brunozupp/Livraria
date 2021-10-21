@@ -68,10 +68,9 @@ namespace Livraria.Api.Controllers
         }
 
         [HttpGet]
-        [Route("v1/livros/teste")]
-        public LivroQueryResult teste()
+        [Route("v1/livros/jogarerro")]
+        public LivroQueryResult JogarErro()
         {
-
             throw new Exception("Uma mensagem de erro para teste");
 
             var result = _repository.Obter(1);
